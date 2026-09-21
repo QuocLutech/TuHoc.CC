@@ -20,6 +20,7 @@
 - [ ] async / await
 - [ ] Fetch API
 - [ ] ES6 Modules
+***DOM (Document Object Model) : là cách JS điều khiển Html.
 
 ##2:Vue
 
@@ -79,11 +80,101 @@
 					* v-on (hoặc viết tắt là @): bắt sự kiện (click, submit, keyup...).Ví dụ: <button @click="count++">Tăng số</button>
 
 	#2.6 : Script : viết JS logic của component
-		-
+		
 	
-	#2.7 : Style
+	#2.7 : Style : CSS giao diện 
 	
-	#2.8 : Cách sử dụng Vue DevTools
+	#2.8 : Cách sử dụng Vue DevTools : sử dụng Vue DevTools để theo dõi được sự thay đổi của dữ liệu , event , Vuex.
+	
+##3 : Vue cơ bản 
+
+	#3.1 : Interpolation(Nội suy ) : Đưa dữ liệu từ JS vào HTML
+		*Ví dụ trong App.vue  : 
+		<script setup>
+		const name = "Quốc";
+		</script>
+
+		<template>
+		<h1>Xin chào {{ name }}</h1>
+		</template>
+
+		*Vue sẽ lấy name="Quốc" để đưa vào {{name}} 
+		*Hiển thị được nhiều biến.
+		*Thực hiện được các phép tính:  <script setup> const a = 10; const b=11; </script>
+										<template> <p> Tổng {{a}} + {{b}} = {{a+b}}  </p> </template>
+		
+		
+	
+	
+	#3.2 :  Binding dữ liệu : Kết nối dữ liệu trong JavaScript với giao diện HTML, để khi dữ liệu thay đổi thì giao diện có thể thay đổi theo. Trong Vue một trong những cách quan trọng nhất là v-bind
+			- v-bind : <script setup>
+							const imageUrl = "https://example.com/cat.jpg";
+						</script>
+
+						<template>
+						    <img v-bind:src="imageUrl">
+						</template>
+			Vue sẽ hiểu : v-bind: src="imageUrl"----> lấy giá trị imageUrl ----> Gán vào thuộc tính src
+
+			
+	- [ ] v-if
+	- [ ] v-else
+	- [ ] v-show
+	- [ ] v-for
+	- [ ] v-on / @click
+	- [ ] v-model
+	- [ ] Event
+	- [ ] Class binding
+	- [ ] Style binding
+
+##4 : Tạo component
+
+	- [ ] Tạo component
+	- [ ] Import component
+	- [ ] Props
+	- [ ] Emit
+	- [ ] Component communication
+	- [ ] Slot
+	- [ ] Component tái sử dụng
+
+##5 : Releactivity
+
+	- [ ] ref()
+	- [ ] reactive()
+	- [ ] computed()
+	- [ ] watch()
+	- [ ] Hiểu cơ chế Reactive của Vue
+
+##6 : Lifecycle & Composition API
+
+	- [ ] onMounted()
+	- [ ] onUpdated()
+	- [ ] onUnmounted()
+	- [ ] Composition API
+	- [ ] Script Setup
+	- [ ] Tạo composable
+
+##7 : Làm việc với API
+
+ 	- [ ] Fetch API
+	- [ ] Axios
+	- [ ] GET
+	- [ ] POST
+	- [ ] PUT
+	- [ ] DELETE
+	- [ ] Loading
+	- [ ] Error handling
+	- [ ] Hiển thị dữ liệu API lên Vue.
+
+##8 : Vue Router
+
+##9 : State Management
+
+
+
+
+
+
 	
 	
 		
