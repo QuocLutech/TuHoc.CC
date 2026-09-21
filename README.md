@@ -114,7 +114,10 @@
 						<template>
 						    <img v-bind:src="imageUrl">
 						</template>
-			Vue sẽ hiểu : v-bind: src="imageUrl"----> lấy giá trị imageUrl ----> Gán vào thuộc tính src
+			-Vue sẽ hiểu : v-bind: src="imageUrl"----> lấy giá trị imageUrl ----> Gán vào thuộc tính src
+			-Thay vì <img v-bind:src="imageUrl"> thì có thể viết <img :src="imageUrl"> (img , href, class , id )
+			<img width="1292" height="589" alt="image" src="https://github.com/user-attachments/assets/21e85227-4be8-4213-b7bb-67c8f5d901ff" />
+
 
 			
 	- [ ] v-if
