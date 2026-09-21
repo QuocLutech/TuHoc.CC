@@ -20,7 +20,10 @@
 - [ ] async / await
 - [ ] Fetch API
 - [ ] ES6 Modules
-***DOM (Document Object Model) : là cách JS điều khiển Html.
+- [ ] DOM : là cách JS điều khiển Html.
+- [ ] Event
+- [ ] LocalStorage
+- [ ] JSON
 
 ##2:Vue
 
@@ -118,9 +121,11 @@
 			-Thay vì <img v-bind:src="imageUrl"> thì có thể viết <img :src="imageUrl"> (img , href, class , id )
 			![Ảnh bài học](https://github.com/user-attachments/assets/21e85227-4be8-4213-b7bb-67c8f5d901ff)
 
+			- v-if : sử dụng để hiển thị khối lệnh có điều kiện . ĐK đúng thì hiển thị còn sai thì ko .
+			![Ảnh bài học](https://github.com/user-attachments/assets/1108b330-37b7-4634-9299-3fcf4ce4219e)
 
 			
-	- [ ] v-if
+			
 	- [ ] v-else
 	- [ ] v-show
 	- [ ] v-for
@@ -140,7 +145,7 @@
 	- [ ] Slot
 	- [ ] Component tái sử dụng
 
-##5 : Releactivity
+##5 : Reactivity
 
 	- [ ] ref()
 	- [ ] reactive()
