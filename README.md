@@ -257,7 +257,22 @@
 	
 	#4.5 : Component communication
 		+ Đây là cách các component con trao đổi dữ liệu và sự kiện với nhau .
-		+ 
+		+ Không nên truyền trực tiếp mà thường thông qua component cha .  [con1].vue ---> App.vue ---> [con2].vue  . Hoặc khi ứng dụng lớn, có thể dùng state management như Pinia.
+		+ Vue có cách để truyền dữ liệu sâu xuống nhiều component con bằng provide/inject 
+	- Giả sử   https://github.com/user-attachments/assets/c13fb76c-e137-495f-8e0c-30ef3a309a2f
+	***Ở ảnh này có thể thấy : + App.vue chứa ProductList : 	<script setup>
+																	import ProductList from './components/ProductList.vue'
+																</script
+							   + ProductList lại chứa lại chứa ProductCard : 	<script setup>
+																					import ProductCard from './ProductCard.vue'
+																				</script>	
+							   + Tương tự ProductCard lại chưa BuyButton .
+							   + BuyButton.vue : <template> <button>Mua hàng </Button> </template>
+							   + Các component con đang lồng nhau nhiều lớp và nếu App.vue cò thông tin const userName= 'Quốc' và BuyButton cần biest thông tin khi nó nằm ở 3 lớp bên dưới nếu chỉ sử dụng Pops thì tức là
+							   		ProducList và ProductCard ko cần đến thông tin này nhưng vẫn phải nhận rồi truyền tiếp ==> khi đó ta sử dụng provide/inject hữu ích .
+							   + Thay vì App --props--> ProductList --props--> ProductCard --props--> BuyButton thì App --provide--> ProductList --> ProductCard --> BuyButton <--inject--
+									
+		
 	- [ ] Slot
 	- [ ] Component tái sử dụng
 
