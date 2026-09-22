@@ -184,9 +184,19 @@
 
 ##4 : Tạo component
 
-	- [ ] Tạo component
-	- [ ] Import component
-	- [ ] Props
+	#4.1 : Tạo component 
+		src/components/[tenFile].vue
+
+	#4.2 : Import component
+		- Trong file App.vue 
+		ví dụ :
+		<script setup>
+			import [tenFile] from './components/[tenFile].vue'
+		</script>
+	
+	#4.3 : Props
+		Là cách để imponent cha [App.vue] truyền dữ liệu xuống imponent con [src/imponents/[tenFileCon].vue]
+	
 	- [ ] Emit
 	- [ ] Component communication
 	- [ ] Slot
