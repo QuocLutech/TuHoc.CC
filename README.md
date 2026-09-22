@@ -195,7 +195,54 @@
 		</script>
 	
 	#4.3 : Props
-		Là cách để imponent cha [App.vue] truyền dữ liệu xuống imponent con [src/imponents/[tenFileCon].vue]
+		-Là cách để imponent cha [App.vue] truyền dữ liệu xuống imponent con [src/imponents/[tenFileCon].vue]
+		- ví dụ : 
+				Component con : Product.vue 
+					<script setup>
+						theProps(['name'])
+					</script>
+					<template> <h2> {{name}} </h2> </template>
+				Component cha : App.vue 
+					<script setup>
+						import Product from './src/pronents/Product.vue'
+					</script>
+					<template>
+						<Product name="Áo Thun" /> 
+						<Product name="Quần" /> 
+						<Product name="Mũ" /> 
+					</template>
+				//Ở ví dụ này name="tenSP" chính là props .
+				
+		-Có thể truyền nhiều props ![Ảnh bài học](https://github.com/user-attachments/assets/a8eb2115-0a32-44d0-8f59-291fb1225168).
+		
+		*** Truyền số , boolean , biến : 
+			+ <Product price ="10000" /> thì price ở đây là chuỗi 
+			+ <Product :price ="1000" /> thì price ở đây là số
+			+ <Product :is-sale="true" /> boolean
+			+Truyền biến : 	<script setup>
+								const productPrice = 100000
+							</script>
+
+							<template>
+  								<Product :price="productPrice" />
+							</template>
+
+		***Khai báo props bằng object : 
+			- Thay vì khai báo :  thePops(['name','price']) 
+			- Thì có thể 		<script setup>
+									theProps({
+  									name: String,
+ 									price: Number
+											})
+								</script>
+
+		***Props là dữ liệu một chiều , component con không nên trực tiếp thay đổi props , nếu cần thay đổi component con sẽ dùng Event để thông báo ngược lên component cha.
+
+		
+
+		
+		
+		
 	
 	- [ ] Emit
 	- [ ] Component communication
