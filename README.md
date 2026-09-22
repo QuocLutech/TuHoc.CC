@@ -199,7 +199,7 @@
 		- ví dụ : 
 				Component con : Product.vue 
 					<script setup>
-						theProps(['name'])
+						defineProps(['name'])
 					</script>
 					<template> <h2> {{name}} </h2> </template>
 				Component cha : App.vue 
@@ -244,7 +244,17 @@
 		
 		
 	
-	- [ ] Emit
+	#4.4 : Emit
+		+Dùng để báo sự kiện từ component con lên cha
+		+Ví dụ : con có nút mua hàng , khi ấn vào sẽ báo sự kiện lên để cha xử lý thông tin 
+			ProductCard.vue --	<button @click="emit('muaHang')">
+     							 	Mua hàng
+    							</button>
+			Thì App.vue bắt sự kiện như sau :  <ProductCard name="Áo" :price="10000" @muaHang="xuLyMuaHang"/> và cần 1 function xử lý sự kiện : function xuLyMuaHang(){alert('Bạn đã mua sản phẩm')}
+		
+		
+
+	
 	- [ ] Component communication
 	- [ ] Slot
 	- [ ] Component tái sử dụng
