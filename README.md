@@ -173,9 +173,12 @@
 						Nhấn phím → keydown
 					   ![Ảnh bài học](https://github.com/user-attachments/assets/e3d5ead8-f748-415a-b539-999f427e0881)
 
-			 - Class binding : là cách vue cho phép bạn thay đổi class của HTML dựa trên dữ liệu
-			 		![Ảnh bài học](https://github.com/user-attachments/assets/f6d41da9-198a-4108-a062-a51d4ed7d78c_
-	- [ ] Style binding
+			 - Class binding : là cách vue cho phép bạn thay đổi class của HTML dựa trên dữ liệu.
+			 			![Ảnh bài học](https://github.com/user-attachments/assets/f6d41da9-198a-4108-a062-a51d4ed7d78c_
+						
+			 - Style binding : Cho phép thay đổi CSS dựa trên csdl.
+			 			![Ảnh bài học]https://github.com/user-attachments/assets/59e433eb-dfb6-4dde-89a1-9c3763b9b7a7
+
 						
 
 
