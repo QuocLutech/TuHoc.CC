@@ -29,7 +29,9 @@
 
 	#2.1 : Vue là gì ? 
 		-Vue là một framework dùng để xây dựng giao diện người dùng (user interface) .
-		-giúp chia một trang web lớn thành nhiều mảnh nhỏ có giao diện và logic riêng gọi là component(thành phần ) , những mảnh này có thể tái sử dụng (reuse). 
+		-Vue được xây dựng dựa trên HTML,CSS và JavaScript tiêu chuẩn .
+		-Được tạo ra để đơn giản hóa việc phát triển ứng dụng bằng việc tái sử dụng các component(thành phần) và kiến trúc linh hoạt 
+		
 		
 	#2.2 : Cách tạo project Vue : 
 		+Bước 1: Đảm bảo cài đặt phiên bản node.js mới nhất 
@@ -37,9 +39,9 @@
 		
 	#2.3 : Cấu trúc Project Vue :
 	
-		1) src/ : Code
+		1) src/ : Code chính 
 		
-		2) App.vue : Đây là component(thành phần) gốc của ứng dụng .
+		2) App.vue : Đây là component(thành phần) chính trong dự án .
 			- Ví dụ :  <template> <h1> hello world </h1> </template>
 			- Một file .vue thường có 3 phần : <script setup>
 											// JavaScript - Xử lý logic
@@ -51,17 +53,17 @@
 											    /* CSS-Giao diện */
 											   </style>
 											   
-		3) main.js:
+		3) main.js:Kết nối vue với HTML , Có nhiệm vụ import component chính của dự án đến thẻ id="app" trong file Index.html
 		
 		4) component/ : đây là nơi chứa các component nhỏ .
 		
-		5) assets/ : chưa tài nguyên của project : image/ , logo.png,style.css ,...
+		5) assets/ : chứa tài nguyên của project : image/ , logo.png,style.css ,...
 		
-		6) public/:
+		6) public/: Chứa các file tĩnh
 		
 		7) package.json: chứa các thư viện project sử dụng.
 		
-		8) node_modules/ : chưa các thư viện đã cài
+		8) node_modules/ : chứa các thư viện đã cài
 		
 		9) Index.html : HTML
 
@@ -76,7 +78,8 @@
 				+ Interpolation(cú pháp nội suy) :Sử dụng cặp dấu ngoặc nhọn {{ }} để hiển thị dữ liệu dạng văn bản (text) hoặc thực hiện các biểu thức JavaScript đơn giản :Ví dụ: {{ message }} , {{ a*b * 2 }} , {{isOn?'On':'Off'}};
 				
 				+ Directives(chỉ thị của vue) : Là các thuộc tính  v-(tiền tố : Prefix) được gắn vào thẻ HTML để thực hiện các chức năng logic nó báo cho vue biết đây là một chỉ thị đặc biệt .
-					* v-bind: gắn dữ liệu vào HTML (ví dụ: src, href, class, disabled). Ví dụ: <img v-bind :src="imageUrl" />
+					* v-bind: gắn dữ liệu vào HTML (src, href, class, disabled). Ví dụ: <img v-bind :src="imageUrl" /> có thể 
+				      													 viết tắt thành <img :src="imageUrl" />
 					* v-model: Liên kết dữ liệu 2 chiều (two-way binding), thường dùng cho các ô nhập liệu (input, select, textarea). Ví dụ: <input v-model="searchText" />
 					* v-if, v-else-if, v-else: Hiển thị theo điều kiện. Ví dụ: <p v-if="isLoggedIn">Bạn đã đăng nhập</p>
 					* v-for: Lặp dữ liệu.Ví dụ: <li v-for="item in items" :key="item.id">{{ item.name }}</li>
@@ -123,17 +126,58 @@
 
 			- v-if : sử dụng để hiển thị khối lệnh có điều kiện . ĐK đúng thì hiển thị còn sai thì ko .
 			![Ảnh bài học](https://github.com/user-attachments/assets/1108b330-37b7-4634-9299-3fcf4ce4219e)
+			
+	 		- v-else :		<div v-if="điều_kiện">
+ 								 Nội dung khi đúng
+							</div>
+
+							<div v-else>
+  								 Nội dung khi sai
+							</div>
+			![Ảnh bài học](https://github.com/user-attachments/assets/580c64f1-b60f-409f-b55a-33f21b88d20c)
+
+			- v-show : ẩn hiện phần tử dựa trên điều kiện :
+			 ![Ảnh bài học](https://github.com/user-attachments/assets/1ec87d0c-d9fb-469c-b66a-c0b125b9b5b8)
+
+			- v-for :
+					+Lặp qua mảng: v-for="item in items" hoặc v-for="(item, index) in items" (với index là số thứ tự bắt đầu từ 0).
+						![Ảnh bài học](https://github.com/user-attachments/assets/13a90806-2afc-4274-956c-d0b0d20e6d09)
+						
+					+Lặp qua đối tượng: v-for="(value, key, index) in object" (lần lượt lấy giá trị, tên khóa và chỉ mục).
+						![Ảnh bài học](https://github.com/user-attachments/assets/72e31cf5-4390-4782-b59d-5dbc8806f980)
+
+					+Lặp theo khoảng số: v-for="n in 10" (lặp từ 1 đến 10)
+						![Ảnh bài học](https://github.com/user-attachments/assets/20bebfac-abb8-4da1-8735-aeabc6421e9a)
+
+					 
+
+			- v-on / @click : - Trong vue nếu muốn một phần tử thay đổi và tự động cập nhật nên dùng ref();	
+							  - .prevent: Gọi event.preventDefault() để ngăn hành vi mặc định của thẻ (như thẻ <a> không bị chuyển trang).
+							  - .once: Sự kiện click chỉ được kích hoạt đúng một lần duy nhất.
+						![Ảnh bài học](https://github.com/user-attachments/assets/22ee3690-4a2e-4da7-884e-ccffe60b317d)
+
+			- v-model : - Người dùng nhập dữ liệu ---> biến được cập nhật tự động. Nó dùng để liên kết dữ liệu với input.
+						![Ảnh bài học](github.com/user-attachments/assets/a2303842-54be-4743-8fc9-1a059da03788)
+						![Ảnh bài học](https://github.com/user-attachments/assets/cd975ee1-3de7-452a-ae89-b734b8fde0eb)
+
 
 			
-			
-	- [ ] v-else
-	- [ ] v-show
-	- [ ] v-for
-	- [ ] v-on / @click
-	- [ ] v-model
-	- [ ] Event
-	- [ ] Class binding
+			- Event : -là một hành động xảy ra trên trang web do người dùng hoặc trình duyệt thực hiện.
+					  -Ví dụ:  Click vào nút → click,Nhập dữ liệu → input,Gửi form → submit,Di chuyển chuột → mouseover,Nhấn phím → keydown
+					  -Trong vue chúng ta thường dùng v-on hoặc kí hiệu @ để bắt even
+						Gửi form → submit
+						Click vào nút → click
+						Nhập dữ liệu → input
+						Gửi form → submit
+						Di chuyển chuột → mouseover
+						Nhấn phím → keydown
+					   ![Ảnh bài học](https://github.com/user-attachments/assets/e3d5ead8-f748-415a-b539-999f427e0881)
+
+			 - Class binding : là cách vue cho phép bạn thay đổi class của HTML dựa trên dữ liệu
+			 		![Ảnh bài học](https://github.com/user-attachments/assets/f6d41da9-198a-4108-a062-a51d4ed7d78c_
 	- [ ] Style binding
+						
+
 
 ##4 : Tạo component
 
