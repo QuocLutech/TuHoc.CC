@@ -255,7 +255,9 @@
 		
 
 	
-	- [ ] Component communication
+	#4.5 : Component communication
+		+ Đây là cách các component con trao đổi dữ liệu và sự kiện với nhau .
+		+ 
 	- [ ] Slot
 	- [ ] Component tái sử dụng
 
