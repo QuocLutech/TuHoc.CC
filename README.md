@@ -256,9 +256,11 @@
 
 	
 	#4.5 : Component communication
+	
 		+ Đây là cách các component con trao đổi dữ liệu và sự kiện với nhau .
 		+ Không nên truyền trực tiếp mà thường thông qua component cha .  [con1].vue ---> App.vue ---> [con2].vue  . Hoặc khi ứng dụng lớn, có thể dùng state management như Pinia.
 		+ Vue có cách để truyền dữ liệu sâu xuống nhiều component con bằng provide/inject 
+	
 	- Giả sử   https://github.com/user-attachments/assets/c13fb76c-e137-495f-8e0c-30ef3a309a2f
 	***Ở ảnh này có thể thấy : + App.vue chứa ProductList : 	<script setup>
 																	import ProductList from './components/ProductList.vue'
