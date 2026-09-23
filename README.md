@@ -34,15 +34,13 @@
 		
 		
 	#2.2 : Cách tạo project Vue : 
-		+Bước 1: Đảm bảo cài đặt phiên bản node.js mới nhất 
-		+Bước 2: Tạo cấu trúc dự án Vue : </> npm create vue@latest ---> projecname ---> choose option ---> cd [projectname] --> npm install --> npm run dev 
+		 -npm create vue@latest ---> projecname ---> choose option ---> cd [projectname] --> npm install --> npm run dev 
 		
 	#2.3 : Cấu trúc Project Vue :
 	
-		1) src/ : Code chính 
+		1) src/ : Chứa mã nguồn
 		
 		2) App.vue : Đây là component(thành phần) chính trong dự án .
-			- Ví dụ :  <template> <h1> hello world </h1> </template>
 			- Một file .vue thường có 3 phần : <script setup>
 											// JavaScript - Xử lý logic
 											   </script>
@@ -52,6 +50,7 @@
 											   <style>
 											    /* CSS-Giao diện */
 											   </style>
+			 - App.vue còn được gọi là component cha .
 											   
 		3) main.js:Kết nối vue với HTML , Có nhiệm vụ import component chính của dự án đến thẻ id="app" trong file Index.html
 		
@@ -70,6 +69,8 @@
 	#2.4 : component là gì : Là một khối giao diện (UI) , có thể tái sử dụng , bao gồm : HTML , CSS , JavaScript .
 	
 		1) Một component cần được " đăng kí " (toàn cục hoặc cục bộ )  để Vue biết được vị trí cài đặt của nó khi gặp trong template .
+		- Đăng kí cục bộ : ví dụ tại App.vue : import [fileName] from './components/[fileName].vue' ==> chỉ được sử dụng ở App.vue còn ở file .vue 		khác sẽ không hiểu được mà không import .
+		- Đăng kí toàn cục : import trong main.js 
 		2) Cấu trúc : +Props: Dùng để truyền dữ liệu từ component cha xuống component con 
 					  +Events($emit): Dùng để component con thông báo sự kiện hoặc truyền dữ liệu ngược lên component cha.
 					  +Đăng ký (Registration): Có thể đăng ký dạng toàn cục (global) để dùng ở mọi nơi hoặc cục bộ (local) chỉ dùng trong một component khác.
@@ -87,10 +88,8 @@
 
 	#2.6 : Script : viết JS logic của component
 		
-	
 	#2.7 : Style : CSS giao diện 
-	
-	#2.8 : Cách sử dụng Vue DevTools : sử dụng Vue DevTools để theo dõi được sự thay đổi của dữ liệu , event , Vuex.
+
 	
 ##3 : Vue cơ bản 
 
