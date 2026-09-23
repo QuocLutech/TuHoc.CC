@@ -104,7 +104,6 @@
 		</template>
 
 		*Vue sẽ lấy name="Quốc" để đưa vào {{name}} 
-		*Hiển thị được nhiều biến.
 		*Thực hiện được các phép tính:  <script setup> const a = 10; const b=11; </script>
 										<template> <p> Tổng {{a}} + {{b}} = {{a+b}}  </p> </template>
 		
@@ -201,6 +200,7 @@
 						defineProps(['name'])
 					</script>
 					<template> <h2> {{name}} </h2> </template>
+					
 				Component cha : App.vue 
 					<script setup>
 						import Product from './src/pronents/Product.vue'
@@ -227,9 +227,9 @@
 							</template>
 
 		***Khai báo props bằng object : 
-			- Thay vì khai báo :  thePops(['name','price']) 
+			- Thay vì khai báo :  definePops(['name','price']) 
 			- Thì có thể 		<script setup>
-									theProps({
+									defineProps({
   									name: String,
  									price: Number
 											})
@@ -274,7 +274,9 @@
 							   + Thay vì App --props--> ProductList --props--> ProductCard --props--> BuyButton thì App --provide--> ProductList --> ProductCard --> BuyButton <--inject--
 									
 		
-	- [ ] Slot
+	#4.4 : Slot
+		-để component cha truyền 1 đoạn HTML team play vago vị trí mà component con chỉ định //props truyền dữ liệu thì slot truyền nội dung giao 	diện.
+	
 	- [ ] Component tái sử dụng
 
 ##5 : Reactivity
