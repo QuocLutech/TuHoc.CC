@@ -279,7 +279,7 @@ price: Number
 
 
     #4.4 : Slot
-    	-để component cha truyền 1 đoạn HTML team play vago vị trí mà component con chỉ định //props truyền dữ liệu thì slot truyền nội dung giao 	diện HTML .
+    	-để component cha truyền 1 đoạn HTML  vào vị trí mà component con chỉ định //props truyền dữ liệu thì slot truyền nội dung giao diện HTML .
 
     	// Giả sử có component : 
 			
@@ -379,10 +379,28 @@ price: Number
 ##6 : Lifecycle & Composition API
 
     #6.1 : onMounted() : Thực hiện một đoạn code ngay sau khi component được tạo và đã được đưa vào DOM
+
 		-
 
-    - [ ] onUpdated()
-    - [ ] onUnmounted()
+    #6.2 : onUpdated() :dùng để chạy code sau khi component đã được cập nhật DOM do dữ liệu reactive thay đổi.
+
+		-Nếu onMounted() là "Component đã xuất hiện trên DOM." thì onUpdated() là: "Component vừa cập nhật DOM xong."
+		-https://github.com/user-attachments/assets/db9e0efb-b231-4f63-83e1-b57ada7c3b17  ===> count ==0 --> count==1 -->count thay đổi -->reactivity phát hiện --> vue cập nhật DOM --> onUpdated() chạy
+		- Mỗi khi component có một lần cập nhật DOM thì onUpdated đều chạy
+		-Có thể chạy nhiều lần liên tục do đó ko nên đặt những thao tác nặng vào onUpdated() một cách tùy tiện
+		-Cẩn thận với vòng lặp vô hạn vì dụ :  onUpdated(()=>{count.value++})
+		*** NÂNG CAO : onUpdate() và nextTick() : 
+
+	*****ref(dữ liệu của tôi) --> computed(tính ra dữ liệu mới)-->watch(nếu dữ liệu thay đổi thì làm việc này)-->onMounted(component vừa xuất hiện)-->onUpdated(component vừa cập nhật)--> onUnmouted(component vừa biến mất)
+
+
+
+    #6.3 : onUnmounted() : dùng để chạy code sau khi component bị gỡ khỏi DOM và quá trình cleanup củ component đã hoàn tất
+		-ví dụ : const show=ref(true) , nếu show = true thì khi click UserCard được hiển thị tuy nhiên show = false thì v-if = false dẫn đến userCard bị gỡ khỏi DOM (gọi là UserCard bị onUnmounted())
+		-onUnmounted có nhiệm vụ dọn dẹp --> giảm hao phí tài nguyên 
+
+
+
     - [ ] Composition API
     - [ ] Script Setup
     - [ ] Tạo composable
