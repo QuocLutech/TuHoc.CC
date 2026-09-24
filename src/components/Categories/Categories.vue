@@ -1,10 +1,25 @@
 <script setup>
+import {ref} from 'vue'
 import CategoriesCard from './CategoriesCard.vue'
+import CategoryModal from './CategoryModal.vue';
 
+function handleAddCategory(category){
+    const maxId = Math.max(
+    ...categories.value.map(item => item.id))
+    const newId = maxId + 1
+  categories.value.push({
+    id: newId,
+    name: category.name,
+    productCount : category.productCount,
+    status: category.status
+  })
 
+  showModal.value = false
+}
 
+const showModal =ref(false)
 
-const categories = [
+const categories = ref([
   {
     id: 1,
     name: 'Electronic',
@@ -16,7 +31,7 @@ const categories = [
     id: 2,
     name: 'Clothing',
     productCount: 19,
-    status: 'published'
+    status: 'Draft'
   },
   {
     id: 3,
@@ -30,11 +45,13 @@ const categories = [
     productCount: 15 ,
     status: 'Draft'
   }
-]
+])
 
 </script>
 
 <template>
+
+  
 
   <main class="categories">
 
@@ -48,7 +65,7 @@ const categories = [
         </p>
       </div>
 
-      <button class="add-btn">
+      <button class="add-btn" @click="showModal = true">
         + Add Category
       </button>
 
@@ -56,15 +73,18 @@ const categories = [
 
     <div class="categories-content">
 
-      <CategoriesCard
-        v-for="category in categories"
-        :key="category.id"
-        :name="category.name"
-        :productCount="category.productCount"
-        :status="category.status"
-      />
+      <CategoriesCard v-for="category in categories"
+    :key="category.id"
+    :name="category.name"
+    :id="category.id"
+    :status="category.status" 
+    :productCount="category.productCount"
+
+    />
 
     </div>
+
+    <CategoryModal v-if="showModal" @add-category="handleAddCategory"   @close="showModal= false"/>
 
   </main>
 

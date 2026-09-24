@@ -1,189 +1,280 @@
 <script setup>
+
 defineProps({
-  name: String,              
-  productCount: Number ,      //props : nhận tên , số lượng từ cha 
+
+  id: Number,
+
+  name: String,
+
+  productCount: Number,
+
   status: String
+
 })
+
 </script>
 
+
 <template>
+
   <div class="category-card">
 
-   
+    <!-- Phần trên -->
+
     <div class="card-top">
 
-   
-      <div class="category-info">
+      <!-- ID -->
 
-        <div class="category-icon">
-          📁
-        </div>
+      <div class="category-id">
 
-        <div>
-          <h3>
-            {{ name }}
-          </h3>
-
-          <p>
-            {{ productCount }} Products
-          </p>
-        </div>
+        {{ String(id).padStart(2, '0') }}
 
       </div>
 
 
+      <!-- Nút 3 chấm -->
+
       <button class="more-btn">
+
         ⋮
+
       </button>
 
     </div>
 
-  
+
+    <!-- Thông tin Category -->
+
+    <div class="category-info">
+
+      <h3>
+
+        {{ name }}
+
+      </h3>
+
+      <p>
+
+        WIDGET · {{ productCount }} items
+
+      </p>
+
+    </div>
+
+
+    <!-- Phần dưới -->
+
     <div class="card-bottom">
 
       <span class="status">
-        {{ status }}
+
+        ✓ {{ status }}
+
       </span>
+
+
+      <button class="edit-btn">
+
+        ✎
+
+      </button>
 
     </div>
 
   </div>
+
 </template>
+
 
 <style scoped>
 
 .category-card {
-  width: 100%;                       /* Độ rộng bằng 100% phần tử cha */
 
-  background: #ffffff;             
+  width: 100%;
+  /* width: 100% → card rộng bằng phần tử cha */
 
-  border: 1px solid #e5e7eb;         /* Viền: 1px, kiểu liền */
+  background: #ffffff;
 
-  border-radius: 12px;               /* Bo tròn 4 góc 12px */
+  border: 1px solid #e5e7eb;
+  /* border → tạo đường viền */
 
-  padding: 20px;                     /* Khoảng cách từ nội dung đến viền */
+  border-radius: 12px;
+  /* border-radius → bo tròn góc */
 
-  transition: all 0.2s ease;        /* Tạo hiệu ứng chuyển động mượt */
+  padding: 20px;
+  /* padding → khoảng cách từ nội dung đến viền */
+
+  box-sizing: border-box;
+  /* box-sizing → giúp padding không làm card vượt quá kích thước */
+
+  transition: all 0.2s ease;
+  /* transition → hiệu ứng thay đổi mượt */
+
 }
 
+
 .category-card:hover {
-  border-color: #d1d5db;          
+
+  border-color: #d1d5db;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  /* Tạo bóng xung quanh card */
+  /* box-shadow → tạo bóng xung quanh card */
+
 }
 
 .card-top {
-  display: flex;                     /* Sử dụng Flexbox */
 
-  align-items: flex-start;           /* Căn các phần tử theo chiều dọc ở phía trên */
+  display: flex;
+  /* flex → đưa ID và nút 3 chấm lên cùng một hàng */
 
-  justify-content: space-between;    /* Đẩy 2 phần tử về 2 phía */
+  align-items: center;
+  /* Căn giữa theo chiều dọc */
+
+  justify-content: space-between;
+  /* ID bên trái, nút 3 chấm bên phải */
+
 }
 
-.category-info {
-  display: flex;                     /* Đặt icon và thông tin nằm cùng một hàng */
+.category-id {
 
-  align-items: center;               /* Căn giữa icon và nội dung theo chiều dọc */
+  width: 34px;
 
-  gap: 12px;                         /* Khoảng cách giữa icon và phần thông tin */
-}
+  height: 34px;
 
+  display: flex;
 
-/* Icon */
+  align-items: center;
 
-.category-icon {
-  width: 45px;               
+  justify-content: center;
 
-  height: 45px;     
+  background: #2563eb;
 
-  display: flex;                    /* Sử dụng Flexbox */
+  color: white;
 
-  align-items: center;        
+  border-radius: 8px;
 
-  justify-content: center;          
+  font-size: 14px;
 
-  flex-shrink: 0;                   /* Không cho icon bị co nhỏ lại */
+  font-weight: 600;
 
-  background: #eef4ff;              
-
-  border-radius: 10px;               /* Bo tròn góc */
-
-  font-size: 20px;                   /* Kích thước emoji/icon */
-}
-
-.category-info h3 {
-  margin: 0 0 5px;                  /* Xóa margin mặc định, tạo khoảng cách dưới 5px */
-
-  font-size: 16px;                 
-
-  font-weight: 600;                  /* Độ đậm của chữ */
-
-  color: #1f2937;                
-}
-
-.category-info p {
-  margin: 0;                  
-
-  font-size: 14px;                 
-
-  color: #6b7280;               
 }
 
 .more-btn {
-  width: 32px;                      
 
-  height: 32px;                    
+  width: 32px;
 
-  display: flex;       
+  height: 32px;
 
-  align-items: center;            
+  display: flex;
 
-  justify-content: center;           
+  align-items: center;
 
-  border: none;                      /* Không hiển thị đường viền */
+  justify-content: center;
 
-  border-radius: 6px;               
+  border: none;
 
-  background: transparent;           /* Nền trong suốt */
+  border-radius: 6px;
 
-  color: #6b7280;                  
+  background: transparent;
 
-  font-size: 20px;                
+  color: #6b7280;
 
-  cursor: pointer;                   /* Đổi con trỏ thành hình bàn tay */
+  font-size: 20px;
 
-  transition: background 0.2s;       /* Hiệu ứng đổi màu nền mượt */
+  cursor: pointer;
+
+  transition: background 0.2s;
+
 }
 
 .more-btn:hover {
-  background: #f3f4f6;            
+
+  background: #f3f4f6;
+
 }
 
+.category-info {
+
+  margin-top: 16px;
+
+}
+
+.category-info h3 {
+
+  margin: 0;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: #1f2937;
+
+}
+
+
+.category-info p {
+
+  margin: 6px 0 0;
+
+  font-size: 12px;
+
+  color: #94a3b8;
+
+}
 
 .card-bottom {
-  margin-top: 20px;                 
 
-  padding-top: 15px;                
+  margin-top: 20px;
 
-  border-top: 1px solid #f0f0f0;    
+  padding-top: 15px;
+
+  border-top: 1px solid #f0f0f0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.status {
+
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  background: #ecfdf3;
+
+  color: #16a34a;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+}
+
+.edit-btn {
+
+  border: none;
+
+  background: transparent;
+
+  color: #94a3b8;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
 }
 
 
-.status {
-  display: inline-block;             /* Cho phép áp dụng width/padding nhưng vẫn nằm cùng dòng */
+.edit-btn:hover {
 
-  padding: 5px 10px;              
+  color: #2563eb;
 
-  border-radius: 20px;               
-
-  background: #ecfdf3;               
-
-  color: #16a34a;              
-
-  font-size: 12px;                  
-
-  font-weight: 500;              
 }
 
 </style>
