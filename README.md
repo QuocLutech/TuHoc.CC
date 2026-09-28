@@ -509,3 +509,13 @@ price: Number
 
 ##9 : State Management
 https://github.com/user-attachments/assets/d1daad4f-4272-4262-a272-d725b09bbe8c
+https://github.com/user-attachments/assets/fa79bb92-5121-418e-9d74-c613673c6cff
+https://github.com/user-attachments/assets/332443bd-fbb0-487b-b9f1-1662b3a6b5f7
+https://github.com/user-attachments/assets/3a19feb1-0084-4f4b-b3de-9809804187b9
+https://github.com/user-attachments/assets/39e594a9-6682-45fc-a283-5ff273c500e0
+https://github.com/user-attachments/assets/6bf5cd6e-a9f2-4f0e-a77d-393240076b99
+https://github.com/user-attachments/assets/c0347368-7e57-4922-8e68-b61ea592d7b3
+https://github.com/user-attachments/assets/6bc3b946-ff41-4a65-b475-acaf9713e096
+
+
+
