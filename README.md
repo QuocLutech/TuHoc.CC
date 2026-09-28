@@ -317,6 +317,8 @@ price: Number
 
     #5.1 : ref() có những trường hợp chúng ta cần truy cập trực tiếp vào các phần tử DOM cơ bản. Để đạt được điều này, chúng ta có thể sử dụng ref.
 
+			+Ref (lưu , quản lý dữ liệu ) 
+
 			import { ref } from 'vue'
 			const count = ref(0) //ref() tạo ra một reactive value.
 			
@@ -328,30 +330,45 @@ price: Number
 				
 
     #5.2 : reactive()
+			-là một hàm thuộc Composition API dùng để tạo ra một đối tượng phản ứng (reactive object), giúp giao diện tự động cập nhật khi dữ liệu bên trong đối tượng đó thay đổi
 			ngoài ref ra còn có reactive 
-			import {reactive} from 'vue'
-			const user reactive(){
-				name: 'Quốc',
-				age: 26
-			}
+			- Ví dụ : 
+				<script setup>
+					import { reactive } from 'vue'
+					const state = reactive({ count: 0 })
+				</script>
+				<template>
+  					<button @click="state.count++">
+  						{{ state.count }}
+					</button>
+				</template> //vue biết count đã thay đổi -->vue thông báo cho nhưng nơi đang dùng COUNT--> component cập nhật --->  tự động cập nhật giao diện
+				- Không giống như ref, vốn gói giá trị bên trong thành một đối tượng tùy chỉnh, reactive() làm cho chính đối tượng đó trở nên phản ứng.
 
-			javaScript :
-			user.name='Nguyễn Quốc'====> vue tự cập nhật giao diện <h2>{{user.nam}}</h2>
-			![alt text](image.png)
+			- HẠN CHẾ CỦA API REACATIVE : +Nó không thể chứa các kiểu dữ liệu nguyên thủy như string, number hoặc boolean.
+										  +Không thể thay thế toàn bộ đối tượng: vì tính năng theo dõi reactivity của Vue hoạt động dựa trên quyền truy cập thuộc tính, chúng ta phải luôn giữ cùng một tham chiếu đến đối tượng reactive. Điều này có nghĩa là chúng ta không thể dễ dàng "thay thế" một đối tượng reactive vì kết nối reactivity với tham chiếu đầu tiên sẽ bị mất.
+					Vì vậy nên sử dụng ref() làm API chính để khai báo trạng thái phản ứng .
+			- REACTIVE có thể xử lý object lồng nhau  : https://github.com/user-attachments/assets/ef911e30-37a2-450d-8c52-589ba1aa38a9
 
+		***SỰ KHÁC NHAU GIỮA REF() VÀ REACTIVE() : +cùng 1 dữ liệu có 2 cách viết vd : reactive() : student.name = 'Quốc' còn Ref() thì student.name.value.name= 'Quốc'
+												   +Ref() có thể chứa bất kì dữ liệu nào trong khi reactive() phù hợp với object/array
+												   +Nhưng để thay thế toàn bộ object thì Ref lại hoàn toàn rất tiện 
+												   +nên hãy dùng ref() khi muốn một biến reactive và có khả năng thay toàn bộ giá trị còn dùng reactive() khi có 1 object/array và chủ yếu muốn thao tác trực tiếp bên trong
 
     #5.3 : computed() 
+		- import {ref, computed} from 'vue'
 		- computed() = một giá trị được tính toán tự động dựa trên dữ liệu reactive khác.
-		- ref() thì lưu dữ liệu còn computed thì tính toán dữ liệu đó ===> nếu dữ liệu gốc thay đổi thì computed sẽ tự động tính toán lại
+		- ref() thì lưu dữ liệu còn computed thì tính toán dữ liệu đó ===> (ref() : dữ liệu của tôi là gì còn computed() : từ dữ liệu đó tôi tính ra được gì )
 		- Ví dụ : https://github.com/user-attachments/assets/56bc3ec0-c6b3-4aaf-94fa-d19c2b858237 //cũng có thể viết bằng function tuy nhiên computed() phù hợp hơn khi đang tạo một giá trị phụ thuộc vào dữ liệu reactive
 		- computed thường dùng trong :  + Lọc dữ liệu 
 										+ Tìm kiếm
 										+ Tính tổng
 										+ Tính trạng thái 
 										+ Nhớ sự khác nhau 
-										
+										+https://github.com/user-attachments/assets/2839ec72-8a8c-4886-9b8c-5f0d2105ea5d
+										+computed cũng là reactive
 
     #5.4 : watch()
+		
 		-dùng để theo dõi một dữ liệu reactive. Khi dữ liệu đó thay đổi, Vue sẽ thực hiện một hành động.
 		-computed() → tính ra một giá trị mới còn watch() → phát hiện thay đổi rồi làm một việc gì đó
 		-https://github.com/user-attachments/assets/7acd81
@@ -368,7 +385,7 @@ price: Number
   					console.log(oldValue)
 											}) count-->dữ liệu cần theo dõi --> newValue -->Giá trị mới -->oldValue--> Giá trị cũ
 		-https://github.com/user-attachments/assets/0c3b59a1-9d5e-4aab-98b3-ffbe9dca68d3  ==> Ví dụ thực tế: theo dõi ô tìm kiếm
-		-watch dùng với API : ví dụ : const categoryId = ref(1)
+		-watch thường dùng với API : ví dụ : const categoryId = ref(1)
 											watch(categoryId, async(newId) =>{
 												console.log('Đang lấy sản phẩm của category :', newId)
 											})  // thì khi categoryId=1 đổi thành categoryId=2 --> watch()phát hiện và có thể gọi API lấy sản phẩm của category
@@ -377,10 +394,14 @@ price: Number
     #5.5 : Hiểu cơ chế Reactive của Vue :Reactivity trong Vue là cơ chế giúp Vue theo dõi sự thay đổi của dữ liệu reactive và tự động cập nhật những phần giao diện phụ thuộc vào dữ liệu đó.
 
 ##6 : Lifecycle & Composition API
+	***https://github.com/user-attachments/assets/85f19d20-d44a-4d2f-9e89-a022b1ab2e6b
+	***https://github.com/user-attachments/assets/d07e19e7-34e6-4431-a727-a5f9b6f3e185
 
-    #6.1 : onMounted() : Thực hiện một đoạn code ngay sau khi component được tạo và đã được đưa vào DOM
 
-		-
+
+    #6.1 : onMounted() : Chạy sau khi component đã được mount vào DOM.
+
+		
 
     #6.2 : onUpdated() :dùng để chạy code sau khi component đã được cập nhật DOM do dữ liệu reactive thay đổi.
 
@@ -391,8 +412,23 @@ price: Number
 		-Cẩn thận với vòng lặp vô hạn vì dụ :  onUpdated(()=>{count.value++})
 		*** NÂNG CAO : onUpdate() và nextTick() : 
 
-	*****ref(dữ liệu của tôi) --> computed(tính ra dữ liệu mới)-->watch(nếu dữ liệu thay đổi thì làm việc này)-->onMounted(component vừa xuất hiện)-->onUpdated(component vừa cập nhật)--> onUnmouted(component vừa biến mất)
+	  ***** ref()
+				→ quản lý dữ liệu reactive
 
+			computed()
+				→ tạo dữ liệu được tính toán từ reactive data
+			
+			watch()
+				→ theo dõi dữ liệu và thực hiện side effect khi thay đổi
+			
+			onMounted()
+				→ chạy khi component được mount
+			
+			onUpdated()
+				→ chạy sau khi component update DOM
+			
+			onUnmounted()
+				→ chạy khi component bị unmount
 
 
     #6.3 : onUnmounted() : dùng để chạy code sau khi component bị gỡ khỏi DOM và quá trình cleanup củ component đã hoàn tất
@@ -401,9 +437,46 @@ price: Number
 
 
 
-    - [ ] Composition API
-    - [ ] Script Setup
-    - [ ] Tạo composable
+    #6.4 : Composition API : Composition API là cách Vue cho phép chúng ta tổ chức logic của component bằng các hàm như ref(), reactive(), computed(), watch(), lifecycle hooks...
+		-Ví dụ : import { ref, computed, watch, onMounted } from 'vue'  ==> các hàm này giúp ta gom nhóm và tái sử dụng logic của component .
+		-
+
+	
+    #6.5 : Script Setup : Là cách viết composition API ngắn gọn 
+	+ thay vì https://github.com/user-attachments/assets/05382ea8-46e6-454d-aedb-7e1c46f65d67 thì https://github.com/user-attachments/assets/3d939bdb-644b-48e0-a3ac-5fea25ce842b
+
+
+    #6.6 : Tạo composable : - là một file JavaScript dùng để tách logic có thể tái sử dụng ra khỏi component
+							Ví dụ :  const count = ref(0)
+										function tang() {
+ 										 count.value++
+												}	
+										function giam() {
+										count.value--
+												} //Nếu component khác cũng cần logic này, thay vì copy lại code, ta tạo một composable. 
+														src/
+															├── components/
+															├── composables/
+															│   └── useCounter.js // app.vue hoặc component sẽ useCounter này mà ko cần tự viết function
+															├── App.vue
+															└── main.js
+															quy ước thường dùng : tên composable thương bắt đầu bằng use
+									VIết useCounter.js : import { ref } from 'vue'
+															export function useCounter() { //đây là composable
+															  const count = ref(0)	// tạo dữ liệu reactive
+															  function tang() {
+															    count.value++
+															  }															
+															  function giam() {
+															    count.value--
+															  }															
+															  return {
+															    count,
+															    tang,
+															    giam
+															  }
+															}
+										***Một logic cho nhiều component sử dụng 
 
 ##7 : Làm việc với API
 
