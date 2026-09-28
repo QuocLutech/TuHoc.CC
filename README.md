@@ -399,7 +399,7 @@ price: Number
 
 
 
-    #6.1 : onMounted() : Chạy sau khi component đã được mount vào DOM.
+    #6.1 : onMounted() : Chạy sau khi component đã được mount(gắn kết) vào DOM.
 
 		
 
@@ -480,7 +480,22 @@ price: Number
 
 ##7 : Làm việc với API
 
-- [ ] Fetch API
+#7.1 : Fetch API : dùng để gửi request đến API.
++ Ví dụ : fetch('https://jsonplaceholder.typicode.com/posts')  // hãy đi đến địa chỉ API này và lấy dữ liệu về cho tôi
++ fetch() trả về Promise, nên chúng ta có thể dùng async/await
++ Có 3 bước quan trọng : 1) Gọi API :const response = await fetch(url)
+  						 2) Chuyển response thành JSON : const data = await response.json()
+  						 3) Sử dụng dữ liệu : console.log(data)
++ Ta cần dùng onMounted : khi component được gắn kết-->onMounted -->gọi API --> nhận dữ liệu -->Lưu vào ref()-->vue tự cập nhật giao diện
++ → tạo nơi chứa dữ liệu( const posts = ref([]) )→ chạy khi component xuất hiện(onMounted→ gọi API(Fetch)→ lấy JSON( response.json() )→ đưa dữ liệu API vào Vue→ hiển thị dữ liệu(v-for)
+<img width="1864" height="955" alt="image" src="https://github.com/user-attachments/assets/0a71661d-2184-4d94-8252-7ca104b232b2" />
+
++trong API thực tế, chúng ta thường kiểm tra:		if (!response.ok) {
+														  throw new Error('Có lỗi xảy ra')
+														}
+														
+
+
 - [ ] Axios
 - [ ] GET
 - [ ] POST
@@ -493,3 +508,4 @@ price: Number
 ##8 : Vue Router
 
 ##9 : State Management
+https://github.com/user-attachments/assets/d1daad4f-4272-4262-a272-d725b09bbe8c
